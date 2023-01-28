@@ -100,8 +100,15 @@ public class WhatsappRepository {
             throw new RuntimeException("Approver does not have rights");
         }
 
+        boolean isFound = false;
         List<User> users = groupUserMap.get(group);
-        if(!users.contains(users)){
+        for(User user1 : users){
+            if(Objects.equals(user1,user)){
+                isFound = true;
+                break;
+            }
+        }
+        if(!isFound){
             throw new RuntimeException("User is not a participant");
         }
         adminMap.put(group,user);
